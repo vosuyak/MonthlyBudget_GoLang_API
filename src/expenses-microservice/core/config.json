@@ -1,0 +1,15 @@
+{
+    "port": ":8081",
+    "logFilename": "logs/server.log",
+    "logMaxSize": 10,
+    "logMaxBackups": 10,
+    "logMaxAge": 30,
+
+    "mgAddrs": "mongo-education:27017", 
+    "mgDbName": "victorosuyak",
+    "mgDbUsername": "",
+    "mgDbPassword": "",
+
+    "jwtSecretPassword": "",
+    "issuer": ""
+}
