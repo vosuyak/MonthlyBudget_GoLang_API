@@ -27,7 +27,7 @@ func GetClient() *mongo.Client {
 		Password: os.Getenv("MONGO_DB_PASSWORD"),
 		AuthSource: os.Getenv("MONGO_DB_NAME"),
 	}
-	clientOpts := options.Client().ApplyURI("mongodb://"+os.Getenv("MONGO_DB_HOST")+":"+os.Getenv("MONGO_DB_PORT")) //.SetAuth(credential)
+	clientOpts := options.Client().ApplyURI("mongodb://"+os.Getenv("MONGO_DB_HOST")+":"+os.Getenv("MONGO_DB_PORT")).SetAuth(credential)
 	client, err := mongo.Connect(ctx, clientOpts)
 	if err != nil {
 		log.Fatal(err)
