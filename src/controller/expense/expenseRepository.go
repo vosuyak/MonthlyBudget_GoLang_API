@@ -1,8 +1,8 @@
-package controllers
+package expense
 
 import (
 	"context"
-	"expense/models"
+	"monthly-budget/src/model"
 	"time"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -16,7 +16,7 @@ type ExpenseRepository struct {
 }
 
 // Create - Create Method
-func (r *ExpenseRepository) Create(expense models.Expense) error {
+func (r *ExpenseRepository) Create(expense model.Expense) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -25,8 +25,8 @@ func (r *ExpenseRepository) Create(expense models.Expense) error {
 }
 
 // Get - Get Method
-func (r *ExpenseRepository) Get(id primitive.ObjectID) (models.Expense, error) {
-	var expense models.Expense
+func (r *ExpenseRepository) Get(id primitive.ObjectID) (model.Expense, error) {
+	var expense model.Expense
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -37,13 +37,13 @@ func (r *ExpenseRepository) Get(id primitive.ObjectID) (models.Expense, error) {
 }
 
 // GetAll - GetAll Method
-func (r *ExpenseRepository) GetAll() ([]models.Expense, error) {
-	var expenses []models.Expense
+func (r *ExpenseRepository) GetAll() ([]model.Expense, error) {
+	var expenses []model.Expense
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	item,err := r.C.Find(ctx,bson.M{})
-	var expense models.Expense
+	var expense model.Expense
 	for item.Next(ctx){
 		item.Decode(&expense)
 		expenses = append(expenses,expense)
@@ -53,7 +53,7 @@ func (r *ExpenseRepository) GetAll() ([]models.Expense, error) {
 }
 
 // Update - Update Method
-func (r *ExpenseRepository) Update(expense models.Expense) error {
+func (r *ExpenseRepository) Update(expense model.Expense) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 

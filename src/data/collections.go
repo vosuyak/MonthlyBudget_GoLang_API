@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"expense/models"
+	"monthly-budget/src/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -28,7 +28,7 @@ func CheckIfIDExist(coll string, id primitive.ObjectID) error {
 	var result error
 	switch coll {
 	case "expenses":
-		var expense models.Expense
+		var expense model.Expense
 		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 		defer cancel()
 		collection := GetCollection("expenses")

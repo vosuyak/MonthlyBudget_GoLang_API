@@ -1,13 +1,13 @@
 package main
 
 import (
-	_ "expense/data"
+	_ "monthly-budget/src/data"
 	"os"
-	"expense/routers"
+	"monthly-budget/src/router"
 	"net/http"
 )
 
 func main() {
-	r := routers.ExpenseRoutes()
+	r := router.ExpenseRoutes()
 	http.ListenAndServe(":"+os.Getenv("APP_PORT"), r)
 }

@@ -1,13 +1,14 @@
-package controllers
+package expense
 
 import (
 	"net/http"
-	"expense/common"
-	"expense/data"
-	"expense/models"
 	"encoding/json"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"github.com/gorilla/mux"
+
+	"monthly-budget/src/common"
+	"monthly-budget/src/data"
+	"monthly-budget/src/model"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 
 // CreateExpense - creation of a new Expense
 func CreateExpense(w http.ResponseWriter, r *http.Request) {
-	var exp models.Expense
+	var exp model.Expense
 
 	err := json.NewDecoder(r.Body).Decode(&exp)
 	if err != nil {
@@ -42,7 +43,7 @@ func CreateExpense(w http.ResponseWriter, r *http.Request) {
 
 // GetExpense - creation of a new Expense
 func GetExpense(w http.ResponseWriter, r *http.Request) {
-	var edu models.Expense
+	var edu model.Expense
 	vars := mux.Vars(r)
 	_id, err := primitive.ObjectIDFromHex(vars["id"])
 	if err != nil {
@@ -79,7 +80,7 @@ func GetAllExpense(w http.ResponseWriter, r *http.Request) {
 
 // UpdateExpense - creation of a new Expense
 func UpdateExpense(w http.ResponseWriter, r *http.Request) {
-	var exp models.Expense
+	var exp model.Expense
 
 	vars := mux.Vars(r)
 	_id, err := primitive.ObjectIDFromHex(vars["id"])
